@@ -50,5 +50,12 @@
   },
   "engines": {
     "node": ">=8"
+  },
+  
+  "babel": {
+    "presents": [
+      "babel-present-react-app"
+    ]
   }
+  
 }
