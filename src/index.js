@@ -1,5 +1,10 @@
 import React from 'react'
 import { render } from 'react-testing-library'
+import { BrowserRouter as Router } from 'react-router-dom'
+// for bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'
+import App from './components/App'
+import './index.css'
 
 function Test() {
     return (
@@ -8,4 +13,9 @@ function Test() {
 }
 
 
-render(<Test />, document.getElementById('app'))
+render(
+    <Router>
+        <Test />
+    </Router>,
+    document.getElementById('app')
+)
