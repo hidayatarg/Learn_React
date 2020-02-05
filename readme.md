@@ -68,3 +68,21 @@ Container Component contains => "Backend" for the frontend.
 
 Container Component are Concerned with passing data to child component and actions. They are typically statefull. using the redux connect function at the bottom of the file. 
 
+### Note
+Here the small paranthesis is used because of the single expression.
+
+We export this component directly but you can also write
+`export default AboutPage` at the end.
+```javascript
+import React from 'react'
+// here the small paranthesis is used because of the single expression
+export const AboutPage = () => (
+    <div>
+        <h2>About</h2>
+        <p>
+            This app uses react and redux
+        </p>
+    </div>
+)
+```
+
