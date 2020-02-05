@@ -8,7 +8,7 @@ module.exports = {
     mode: 'development',
     target: 'web',
     // recommended for development
-    devTool: 'cheap-module-source-map',
+    devtool: 'cheap-module-source-map',
     entry: './src/index.js',
     output: {
         // serving from memory
@@ -37,7 +37,7 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: ["babel-loader", "eslint-loader"]
+                use: ["babel-loader"]
             },
             {
                 test: /(\.css)$/,

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Render } from 'react-dom'
 import { render } from 'react-testing-library'
 
 function Test() {
