@@ -252,3 +252,37 @@ export default connect(mapStateToProps, mapDispatchToProps)(AuthorPage)
 Connect function connect our react component with redux store. Function is named well we pass two arguments. `mapStateToProps` and `mapDispatchToProps` the first argument shows **What state do you want to pass to your component** on props and the second argument shows **What actions do you want to pass to your component** on props.
 
 We donot need manually unsubscribe such in flux
+
+#### Connect Function
+It accept two parameters, `mapStateToProps` and `mapDispatchToProps`  both are optional. The first parameter **mapStateToProps** This function is useful for defining ***What Part of Redux Store you want to expose as props on your component***. **When you define this function, the component will subscribe to the Redux store updates**. Any time the store updates, mapStateToProps will be called. 
+
+
+This function returns an object, Each property on the object that you define will become a property on your container component.
+In summary **mapStateToProps argument determines what state is avaliable on your container component.** think of simple app with one reducer and you pass all your state 
+```javascript
+connect(mapStateToProps, mapDispatchToProps)(AuthorPage)
+
+
+function mapStateToProps(state) {
+    return {
+        appState: state
+    };
+}
+``` 
+In my component i could call `this.props.appState` within my component to **access Redux store data**
+
+If you want to expose a certain piece 
+
+```javascript
+connect(mapStateToProps, mapDispatchToProps)(AuthorPage)
+
+
+function mapStateToProps(state) {
+    return {
+        // here
+        users: state.users
+    };
+}
+``` 
+each object key will be come a prop on my component. Being more specific here increase performance. Specify here only the data the component needs.
+*Keep in Mind* when ever the component is updated the function *mapStateToProps fuction is called*.
