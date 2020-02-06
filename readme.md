@@ -101,4 +101,14 @@ Every action like submit form will emit an action. for example user may click th
 
 State changes and handled by pure functions called reducers. Reducers update the state.
 Reducer is a function accept the current state in an action, and it returns a new state. 
+Each action/Operation is handled by one or more reducers which update the single store. reducer recive current state and action, it contains if switch to check the action type and it return new state. after the new state is returned by reducer the store is update. React re render the component that utlizese the data.
+
+React connect to the store via library react-redux.
+
+
+
+
+
+
+
 
