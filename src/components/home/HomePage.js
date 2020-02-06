@@ -10,3 +10,5 @@ export const HomePage = () => (
         </Link>
     </div>
 )
+
+export default HomePage;

@@ -6,16 +6,11 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './components/App'
 import './index.css'
 
-function Test() {
-    return (
-        <p>Hi.</p>
-    )
-}
 
 
 render(
     <Router>
-        <Test />
+        <App />
     </Router>,
     document.getElementById('app')
 )
