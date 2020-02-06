@@ -62,9 +62,13 @@ const HelloWorld = (props) => (<h1>HelloWorld</h1>)
 - Increase performance
 
 ## Container and Presentation Components
-Presentation Component contains all markup. Recive data and actions via props. Doesn't know about redux. Often no state
+Presentation Component contains all markup. Recive data and actions via props. Doesn't know about redux. Often no state (child components).
+- Read Data From Props
+- Invoke call backs on props
 
 Container Component contains => "Backend" for the frontend.
+- Subscribe to Redux state
+- Dispatch Redux actions
 
 Container Component are Concerned with passing data to child component and actions. They are typically statefull. using the redux connect function at the bottom of the file. 
 
