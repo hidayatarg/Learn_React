@@ -88,3 +88,17 @@ export const AboutPage = () => (
 
 ## Switch
 Switch in route make sure only one route can be active in a time.
+
+## Why Redux
+React context => Global data to the lowlevel components. Toplevel component behave as context
+
+Redux Store => store data when ever component action dispacted the redux store is updated and any component can get this data. 
+
+# Redux 3 Principles
+Store cannot be changed directly only way is to emit action. 
+
+Every action like submit form will emit an action. for example user may click the button to submit Contact Form that will hit the SUBMIT_CONTACT_FORM action. 
+
+State changes and handled by pure functions called reducers. Reducers update the state.
+Reducer is a function accept the current state in an action, and it returns a new state. 
+
