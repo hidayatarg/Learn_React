@@ -155,5 +155,15 @@ Push, Pop, Reverse => Must clone array first
 
 Map, Filter, Reduce, Concat, Spread => Prefer to Use 
 
+State is immutable in react
+### why Immutability
+when state changed in react you know where the state is changed.
+- clarity
+- Performance
+- Awsome sauce > travel in time to see where the state is changed
+
+Where that state changed.
+
+`If state is mutated in redux it will introduce a bug.`
 
 
