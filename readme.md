@@ -106,9 +106,31 @@ Each action/Operation is handled by one or more reducers which update the single
 React connect to the store via library react-redux.
 
 
+### Action
+must have a type property
+```javascript
+rateCourse(rating) {
+    return { type: RATE_COURSE, rating: rating}
+}
 
+```
+You can pass thing that are seralizeable to JSON. You shouldnot pass functions. rateCourse is an action creator. Used to create action
 
+### Store
+creating store 
 
+```javascript
+let store = createStore(reducer);
+```
+redux obey the Single Responsibility Pricipal  Store store the data and Reducer concern with change of states.
+#### Store can
+- store.dispatch(action)
+- store.subscribe(action)
+- store.getState()
+- replaceReducer(nextReducer)
 
+`The only way to change a store by dispatching an action.`
 
+`Store cannot be changed directly.`
 
+`Actions are handled by reducers.`
