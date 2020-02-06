@@ -86,3 +86,5 @@ export const AboutPage = () => (
 )
 ```
 
+## Switch
+Switch in route make sure only one route can be active in a time.
