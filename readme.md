@@ -134,3 +134,26 @@ redux obey the Single Responsibility Pricipal  Store store the data and Reducer 
 `Store cannot be changed directly.`
 
 `Actions are handled by reducers.`
+
+## Immutability
+in place of changing state object, you need to return a new object that represent application new state.
+
+Simply when you change {Number, string, boolean, undefined, null} these types a new copy is created.
+
+Redux depened on immutable state to improve performance.
+
+As example in Js 
+- Object.assign
+- {...myObj} - Spread Operator
+- .map (Immutable friendly array methods)
+
+
+Deep cloning is expensive 
+
+## Array to avoid that mutate
+Push, Pop, Reverse => Must clone array first
+
+Map, Filter, Reduce, Concat, Spread => Prefer to Use 
+
+
+
