@@ -229,3 +229,26 @@ So while there is only a single store for redux, creating multiple reducers allo
 "Write independent small reducer functions that are reach responsible for updates to a specific slice of state. We call this pattern "reducer composition". A given action could be handled by all, some, or none of them."
 
 Each actions can be handled by multiple reducers. Each reducer can handle muliple actions. 
+
+## React-Redux Library
+It is used to connect react to the redux store to read data from the store.
+Redux can be used with other javascript libraries. React redux consists of two core items
+
+1. **Provider**: **Attaches app to the store**. Utilized at app route. It wraps entire application. It attaches your app to the redux store.
+**Provider is delcared once in app entry point** (index.js in our case). It uses react context to pull this off, so **the provider makes the store avaliable to all child components without having you pass the store explicitly**. You use this once in the root component.
+```javascript
+// wrapping your app in provider makes the redux store accessible to every component in your app
+<Provider store={this.props.store}>
+    <App />
+</Provider>
+```
+
+2. **Connect**: Create container components. It is a function provided by react-redux.
+**Wraps our component so it is connected to the Redux Store.**
+
+```javascript
+export default connect(mapStateToProps, mapDispatchToProps)(AuthorPage)
+```
+Connect function connect our react component with redux store. Function is named well we pass two arguments. `mapStateToProps` and `mapDispatchToProps` the first argument shows **What state do you want to pass to your component** on props and the second argument shows **What actions do you want to pass to your component** on props.
+
+We donot need manually unsubscribe such in flux
