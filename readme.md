@@ -286,3 +286,58 @@ function mapStateToProps(state) {
 ``` 
 each object key will be come a prop on my component. Being more specific here increase performance. Specify here only the data the component needs.
 *Keep in Mind* when ever the component is updated the function *mapStateToProps fuction is called*.
+
+The second argument is **mapDispatchToProps**. This function let us **specify what action we want to expose** on props.
+
+The **mapDispatchToProps** recieve a dispatch parameter
+```javascript
+connect(mapStateToProps, mapDispatchToProps)(AuthorPage)
+
+
+function mapDispatchToProps(dispatch) {
+    return {
+        action: bindActionCreator(actions, dispatch)
+    };
+}
+```
+## 4 Ways to Handle mapDispatchToProps
+
+mapDispatchToProps is how we dispose our action to the component.
+- ignore it
+- wrap manually
+- bindActionCreator
+- Return object
+
+#### Option 1: Use Dispatch Directly
+dispatch fuction will be attacted to your container component. It has two downside 1- boilerplate, 2- Redux concerns in the child component
+```javascript
+// in this component
+this.props.dispatch(loadCourses())
+```
+
+#### Option 2: Wrap Manually
+Manully wrap your actions creators in dispatch calls. Here I am specifiying the actions that i want to expose to my component explicity. One by one i wrap each action by a dispatch call
+It is a nice option for starter.
+
+```javascript
+function mapDispatchToProps(dispatch) {
+    return{
+        loadCourse: () => {
+        dispatch(loadCourse());
+        },
+        createCourse: (course) => {
+            dispatch(createCourse(course));
+        },
+        updateCourse: (course) => {
+            dispatch(updateCourse(course));
+        }
+    };
+}
+
+// can be accessed via
+// In component
+this.props.loadCourse()
+```
+Note: Each call to my action creators in an anonymous function that calls dispatch.
+
+
