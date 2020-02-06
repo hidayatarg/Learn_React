@@ -167,3 +167,61 @@ Where that state changed.
 `If state is mutated in redux it will introduce a bug.`
 
 
+## Reducers
+Data changing in handle by redux using reducer. to change store we dispatch an action ultimately handled by reducer. 
+
+A reducer is a function that takes state and an action and returns new state. => meat grinder
+```javascript
+function myReudcer(state, action){
+    // Return new state based on action passed
+}
+```
+Example: handle increment counter
+
+```javascript
+function myReducer(state, action){
+    switch(action.type){
+        case "INCREMENT_COUNTER":
+            state.counter++;
+            return state;
+        default:
+            return state;
+    }
+}
+
+```
+
+You cannot do this you are mutating state
+Correct one
+`creating the new object by copying the existing state. and on that new object crement the counter.` Reducers must be pure functions they must not have side effects. calling them with same set of argument always returns the values. 
+
+```javascript
+function myReducer(state, action){
+    switch(action.type){
+        case "INCREMENT_COUNTER":
+            return {...state, counter: state.counter + 1};
+        default:
+            return state;
+    }
+}
+```
+
+### 3 things you shouldnot do in Reducers
+- Mutate arguments
+- Perform side effect => calling api
+- Call non-pure functions => date.now or math.random
+
+
+Reducers should return an updated copy of state. Redux will use that copy to update the store.
+
+## 1 Store and Multiple Reducers
+You can manage slices of state changes through multiple reducers in redux.
+All reducers get called when an action is dispatched. The switch statement inside each reducer look the action type to determine if it has anything to do. this is why all reducers should return the untouched state as the default. This way no case matches the action passed, the existing state is returned. 
+
+Forexample I have three reducers LoadStatus, Courses and Authors, only the reducer that handle the DELETE_COURSE action type will do anything. The others will simply return the state that was passed to them. Each reducers handle its slice of state. In fact, each reducer is only passed its slice of state. so it can only acces the portion of state that it manages. 
+
+So while there is only a single store for redux, creating multiple reducers allows to handle changes to different pieces of the store  in isolation. all the reducers togather form the picture of what is in the store. 
+
+"Write independent small reducer functions that are reach responsible for updates to a specific slice of state. We call this pattern "reducer composition". A given action could be handled by all, some, or none of them."
+
+Each actions can be handled by multiple reducers. Each reducer can handle muliple actions. 
