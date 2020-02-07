@@ -10,8 +10,8 @@ class CoursesPage extends Component {
             }
         }
     }
-    
-    handleChange(event){
+    // Update to ES6 or else bind it
+    handleChange = (event) => {
         // create copy of existing state
         // update the title with event 
         // you edit any object in the data new state
