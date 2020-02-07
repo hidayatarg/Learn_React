@@ -340,4 +340,35 @@ this.props.loadCourse()
 ```
 Note: Each call to my action creators in an anonymous function that calls dispatch.
 
+#### Option 3: bindActionCreators
+the option 2 is good and clear but its code is redundant. You may use `bindActionCreators` function that shipped with react. 
+```javascript
+function mapDispatchToProps(dispatch) {
+    return{
+       actions: bindActionCreators(actions, dispatch)
+    };
+}
+```
+this approch you call, bindActionCreators and it will wrap actions passed to it in a dispatch call for you. and the props created by these two examples will be slightly different. Notice that the **prop that will be exposed to component will be called actions in this case** `this.props.actions.loadCourse()` so we will approch `this.props.action.actionName`. 
+```javascript
+function mapDispatchToProps(dispatch) {
+    return{
+       actions: bindActionCreators(actions, dispatch)
+    };
+}
+// can be accessed via
+// In component
+this.props.actions.loadCourse()
+```
 
+#### Option 4: mapDispatchToProps as Object
+object instead of a function, assume load action is action creator
+```javascript
+const mapDispatchToProps = {
+    loadCourses
+}
+```
+
+You can access it in component `this.props.loadCourses();` 
+
+use option 4 it is more conscise. **Return Object**
