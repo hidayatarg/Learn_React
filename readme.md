@@ -372,3 +372,6 @@ const mapDispatchToProps = {
 You can access it in component `this.props.loadCourses();` 
 
 use option 4 it is more conscise. **Return Object**
+
+## React Redux   Chat
+![React Chat](/React-Chat.png)
