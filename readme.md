@@ -375,3 +375,6 @@ use option 4 it is more conscise. **Return Object**
 
 ## React Redux   Chat
 ![React Chat](/React-Chat.png)
+
+## Redux Initial Setup
+![React Chat](/Redux-Intial-Setup.png)
