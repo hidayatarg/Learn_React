@@ -403,3 +403,6 @@ state = {
 **This approch require less code and we donot need to call super**
 
 **React hook make fuction component powerful we donot need to use classes we donot need use this key word in binding, It will make the confusion less.**
+
+## onSubmit Event
+You may add a click property to the save button but that is not recommended for the usability purpose. onSubmit is prefered. With hitting enter key you can also submit the form.
