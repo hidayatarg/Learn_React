@@ -628,3 +628,20 @@ The dispatch validation warning is gone :) good to go.
 
 ## Map
 Map is built-in javascript function that returns a new array.
+
+
+# Debugging the Redux Code 
+Place debbuger as followed bellow
+- Save Course (createCourse Handler)
+- Course Action (createCourse)
+- Course Reducer (createCourse switch case)
+- As Props will render store is updated by reducer > Course Page (mapToStateToProps)
+
+Check Redux DevTools for Update
+
+# Remember Redux Flow
+![](https://avatars3.githubusercontent.com/u/31112269?v=4&s=100)
+![](/Redux-Flow.png?s=200)
+
+
+
