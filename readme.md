@@ -419,4 +419,5 @@ If the left and right handside match remove the second course. This is called `o
 export function createCourse(course) {
     return { type: "CREATE_COURSE", course };
 }
+```
 **Remember anction send a type and a copy of state to the reducer**
