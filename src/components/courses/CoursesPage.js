@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 
 class CoursesPage extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            course: {
-                title: ''
-            }
+    state = {
+        course: {
+            title: ''
         }
     }
     // Update to ES6 or else bind it

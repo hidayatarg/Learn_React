@@ -378,3 +378,28 @@ use option 4 it is more conscise. **Return Object**
 
 ## Redux Initial Setup
 ![React Chat](/Redux-Intial-Setup.png)
+
+## Declaring state
+There are two ways to declare the states
+1. In constructor
+```javascript
+constructor(props) {
+        super(props)
+        this.state = {
+            course: {
+                title: ''
+            }
+        }
+    }
+```
+2. In the component directly
+```javascript
+state = {
+    course: {
+        title: ''
+    }
+}
+```
+**This approch require less code and we donot need to call super**
+
+**React hook make fuction component powerful we donot need to use classes we donot need use this key word in binding, It will make the confusion less.**
