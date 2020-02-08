@@ -486,3 +486,45 @@ export default rootReducer
 
 `import course from './courseReducer'`
 
+## Creating Redux Store
+In redux there is a single store. We will call the store in our app Entry point. It will be called when the application is stared.
+
+Create confgureStore.js under redux directory
+
+```javascript
+import { createStore } from 'redux'
+import rootReducer from './reducers'
+
+export default function configureStore(initalState) {
+    return createStore(rootReducer, initalState)
+}
+```
+This function will return a createStore method it will take two parameters rootReducer and an initalState. This is all it takes to configure the store.
+
+**Redux Middleware** is a way to enhance Redux's behavior.
+to work with middleware
+```javascript
+import { createStore, applyMiddleware } from 'redux'
+import rootReducer from './reducers'
+import reduxImmutableStateInvariant from 'redux-immutable-state-invarent'
+
+export default function configureStore(initalState) {
+    return createStore(rootReducer, initalState, applyMiddleware(reduxImmutableStateInvariant()))
+}
+```
+**this will warn us if we accidentally mutate Redux state.**
+
+## Configure React Dev Tools
+```javascript
+import { createStore, applyMiddleware, compose } from 'redux'
+import rootReducer from './reducers'
+import reduxImmutableStateInvariant from 'redux-immutable-state-invarent'
+
+export default function configureStore(initalState) {
+    // add support for redux dev tools
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose 
+    return createStore(rootReducer, initalState, composeEnhancers(applyMiddleware(reduxImmutableStateInvariant())))
+}
+```
+
+Now we can interact with redux dev tools in the browsers
