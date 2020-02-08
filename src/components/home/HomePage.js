@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const HomePage = () => (
+const HomePage = () => (
     <div className="jumbotron">
         <h1>Course Adminstration</h1>
         <p>React and Redux Learning</p>

@@ -20,7 +20,9 @@ class CoursesPage extends Component {
         })
     }
 
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        // it will stop reload the App
+        event.preventDefault();
         // create course action
         this.props.dispatch(courseActions.createCourse(this.state.course))
     }
@@ -39,12 +41,16 @@ class CoursesPage extends Component {
                     type="submit" 
                     value="Save" 
                 />
+                {this.props.courses.map(course => (
+                    <div key={course.title}>{course.title}</div>
+                ))}
             </form>
         )
     }
 }
 CoursesPage.propTypes = {
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    courses: PropTypes.array.isRequired
 }
 
 

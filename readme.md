@@ -625,3 +625,6 @@ CoursesPage.prototype = {
 we clarified that we are expecting dispatch to be passed in, of type function and is required. It is need because connect function automatically passes dispatch in if we omit mapDispatchToProps. 
 
 The dispatch validation warning is gone :) good to go.
+
+## Map
+Map is built-in javascript function that returns a new array.
