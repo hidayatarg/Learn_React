@@ -421,3 +421,68 @@ export function createCourse(course) {
 }
 ```
 **Remember anction send a type and a copy of state to the reducer**
+
+We need a function to handle action called reducer
+
+## Creating Reducer for CreateCourse
+In redux we handle actions in Reducer. Reducer is a function that accept state and action, return a new state. 
+We should initilize state to an empty array. It store an array of courses.
+
+```javascript
+export default function courseReducer(state = [], action) {
+    switch (action.type) {
+        case "CREATE_COURSE":
+            // donot do this it will mutate the state
+            state.push(action.state)
+    
+        default:
+            break;
+    }
+}
+
+```
+**WRONG APPROCH** This is wrong approch we should not mutate(change) we should return the new copy of state.
+```javascript
+export default function courseReducer(state = [], action) {
+    switch (action.type) {
+        case "CREATE_COURSE":
+            // we return new copy of state and add the new course on action
+            return [...state, { ...action.course }]
+    
+        default:
+            return state
+    }
+}
+```
+**CORRECT APPROCH** We return new copy of state and add the new course on action
+Notice that **What ever is returned from the reducer becomes the new state** for that particular reducer. It will update our redux store by new course on action.course.
+
+If the reducer recieves an action that it doesnot care about, it should return the unchanged state. Maybe an action related to the author data...or others data
+**To Clone state use the Spread Operator(...)**
+
+In large dataset you can store data by id, you can make an object in place of array. Each key is the item id. It provide fast lookup [For more data check Normalizing State Shape from Redux documentation].
+
+#### Note
+**Remember Each reducer handles a "slice" of state. (a portion of the entire Redux store)**
+
+## Root Reducer 
+Root reducer Will compose of all reducers togather.
+
+```javascript
+// src/redux/reducers/index.js
+import { combineReducers } from 'redux'
+import courses from './courseReducer'
+
+const rootReducer = combineReducers({
+    // each property set to corresponding reducer
+    // since it is object we can omit the right hand side
+    courses: courses
+})
+
+export default rootReducer
+```
+
+**Since I Export the CourseReducer with default key** here in root reduce we can import it by different such as 
+
+`import course from './courseReducer'`
+
