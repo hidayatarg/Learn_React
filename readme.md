@@ -556,3 +556,72 @@ render(
 )
 ```
 Redux Configuration completed.
+
+## Connect to Redux.js (CoursePage.js to Redux)
+- Import the connect from react-redux libaray in that container component.
+- Jump to bottom of component decorate component with `connect`
+connect takes two parameters mapStateToProps and mapDispatchToProps
+
+`export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage)`
+
+we take the results of this and call the CoursePage.
+
+**Connect returns a function. That function then calls our component**
+connect part can be written in a separate function too, but it is not prefered 
+```js
+const connectedStateAndProps = connect(mapStateToProps, mapDispatchToProps)
+export default connected(connectedStateAndProps)(CoursePage)
+```
+**Donot use the upper code** 
+
+**People do this on oneline as below**
+
+```js
+export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage)
+```
+and we will write a function mapStateToProps, determines what part of the state we expose to component. this func determines what state is passed to our component via props
+
+```js
+function mapStateToProps(state, ownProps) {
+    // now it has only an array of course which we will return out of state here
+    return {
+        courses: state.courses
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage)
+```
+
+**Be Specific as possible, when returning mapStateToProps** Request only the data your component needs. if you expose the entire redux store to the component, then the component will re render when any data changes in the redux store. Which is not good!!.
+
+ownProps shows the props attached to this component.
+
+**mapDispatchToProps** **What action we want to expose on our component.** Let us declare what actions to pass to our component on props. It is **optional** if you remove this property from export default, our component gets a dispatch prop injected automatically. so we remove here in CoursesPage.js.
+#### Without mapDispatchToProps
+Since we omitted the mapDispatchToProps now will fire the saving course.
+
+To fire an action (createCourse) we need to import the action 
+`import * as courseActions from '../../redux/actions/courseActions'` and we will update the handleSubmit event.
+```js
+handleSubmit = () => {
+        // create course action
+        this.props.dispatch(courseActions.createCourse(this.state.course))
+}
+```
+
+**Since we did not declare mapDispatchToProps, connect automatically adds Dispatch as prop**
+
+**Remember** you have to **dispatch an action** if you just call an action creator it won't do anything. ActionCreatorjust return an object.
+
+Here on dispatch we may get eslint warning so we declare the proptypes
+
+1- Import PropTypes `import PropTypes from 'prop-types'`
+2- Under the Component give a proptype of what page is expecting such as:
+```js
+CoursesPage.prototype = {
+    dispatch: PropTypes.func.isRequired
+}
+```
+we clarified that we are expecting dispatch to be passed in, of type function and is required. It is need because connect function automatically passes dispatch in if we omit mapDispatchToProps. 
+
+The dispatch validation warning is gone :) good to go.
