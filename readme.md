@@ -527,4 +527,32 @@ export default function configureStore(initalState) {
 }
 ```
 
-Now we can interact with redux dev tools in the browsers
+Now we can interact with redux dev tools in the browsers.
+Provider is a higher order component that provides you redux store data to our child (*React) components.
+After wraping the Router with ReduxProvider (Provider Component), Our React app can reach the redux store.
+
+```javascript
+import React from 'react'
+import { render } from 'react-testing-library'
+import { BrowserRouter as Router } from 'react-router-dom'
+// for bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'
+import App from './components/App'
+import './index.css'
+
+// Redux
+import configureStore from './redux/configureStore'
+import { Provider as ReduxProvider } from 'react-redux'
+
+// intial state into store here if you are server rendering or initlizing redux store from local storage
+const store = configureStore();
+render(
+    <ReduxProvider store={store}>
+        <Router>
+            <App />
+        </Router>
+    </ReduxProvider>,
+    document.getElementById('app')
+)
+```
+Redux Configuration completed.
