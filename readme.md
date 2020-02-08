@@ -406,3 +406,17 @@ state = {
 
 ## onSubmit Event
 You may add a click property to the save button but that is not recommended for the usability purpose. onSubmit is prefered. With hitting enter key you can also submit the form.
+
+## Creating Action for CreateCourse
+we create a file src/redux/actions/createCoruse.js and createCourse function that take a course as a parameter. This action will return type property (* must) and the payload (our course data).
+```javascript
+export function createCourse(course) {
+    return { type: "CREATE_COURSE", course: course };
+}
+```
+If the left and right handside match remove the second course. This is called `object short hand syntax`.
+```javascript
+export function createCourse(course) {
+    return { type: "CREATE_COURSE", course };
+}
+**Remember anction send a type and a copy of state to the reducer**
