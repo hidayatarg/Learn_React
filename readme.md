@@ -709,3 +709,16 @@ handleSubmit = (event) => {
 }
 ```
 *This will do mapDispatchToProps automatically.*
+
+## mapDispatchToProps as an Object
+When we declare mapDispatchToProps as an object, each property is automatically bound to dispatch. Each property is expect to be an action creator function that what is createCourse function.
+
+- change the mapDispatchToProps to an object
+```js
+const mapDispatchToProps = {
+    createCourse: courseActions.createCourse
+}
+```
+but the bindActionCreator is prefered more.
+
+In summary mapStateToProps and mapDispatchToProps are the two magic function used to connect to redux.
