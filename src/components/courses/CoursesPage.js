@@ -23,8 +23,8 @@ class CoursesPage extends Component {
     handleSubmit = (event) => {
         // it will stop reload the App
         event.preventDefault();
-        // create course action
-        this.props.dispatch(courseActions.createCourse(this.state.course))
+        // use mapToProps mapping
+        this.props.createCourse(this.state.course)
     }
 
     render() {
@@ -49,8 +49,8 @@ class CoursesPage extends Component {
     }
 }
 CoursesPage.propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    courses: PropTypes.array.isRequired
+    courses: PropTypes.array.isRequired,
+    createCourse: PropTypes.func.isRequired
 }
 
 
@@ -64,4 +64,13 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(CoursesPage)
+function mapDispatchToProps(dispatch){
+    // the action we choose to return here will be avalibe in this component via props
+    return {
+        createCourse: course => dispatch(courseActions.createCourse(course))
+        // if you dont wrap this with dispatch nothing will happen. actionCreators must be called by dispatch
+        // calling courseAction directly will return an object
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage)

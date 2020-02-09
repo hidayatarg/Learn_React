@@ -643,5 +643,38 @@ Check Redux DevTools for Update
 ![](https://avatars3.githubusercontent.com/u/31112269?v=4&s=100)
 ![](/pngs/Redux-Flow.png)
 
+## mapDispatchToProps: Manual Mapping
+This function determine what actions are avaliable on props this component.
+we add mapDispatchToProp to the connect function
+`export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage)` and then we implement the function.
+**Remember** the action we choose to return here will be avalibe in this component via props. if you **dont wrap this with dispatch nothing will happen**. **actionCreators must be called by dispatch**. calling courseAction directly will return an object
 
+```js
+function mapDispatchToProps(dispatch){
+    return {
+        createCourse: course => dispatch(courseActions.createCourse(course))
+    }
+}
 
+```
+then we need to declare the create course will be reviced as a props to the component. we will update the handleSubmit
+
+```js
+handleSubmit = (event) => {
+    // it will stop reload the App
+    event.preventDefault();
+    // create course action
+    this.props.createCourse(this.state.course)
+}
+```
+we can directly call the createCourse method on the props.
+**Should update PropTypes**
+
+```js
+CoursesPage.propTypes = {
+    courses: PropTypes.array.isRequired,
+    createCourse: PropTypes.func.isRequired
+}
+```
+
+Since we declared the mapDispatchToProps, dispatch is no longer injected. Only the actions we declared in mapDispatchToProps are passed in.
