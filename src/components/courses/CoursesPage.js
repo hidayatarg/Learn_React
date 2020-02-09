@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as courseActions from '../../redux/actions/courseActions'
 import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
 
 class CoursesPage extends Component {
      state = {
@@ -23,8 +24,7 @@ class CoursesPage extends Component {
     handleSubmit = (event) => {
         // it will stop reload the App
         event.preventDefault();
-        // use mapToProps mapping
-        this.props.createCourse(this.state.course)
+        this.props.actions.createCourse(this.state.course)
     }
 
     render() {
@@ -50,7 +50,7 @@ class CoursesPage extends Component {
 }
 CoursesPage.propTypes = {
     courses: PropTypes.array.isRequired,
-    createCourse: PropTypes.func.isRequired
+    actions: PropTypes.object.isRequired
 }
 
 
@@ -65,11 +65,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch){
-    // the action we choose to return here will be avalibe in this component via props
     return {
-        createCourse: course => dispatch(courseActions.createCourse(course))
-        // if you dont wrap this with dispatch nothing will happen. actionCreators must be called by dispatch
-        // calling courseAction directly will return an object
+        // for more actions in the props
+        actions: bindActionCreators(courseActions, dispatch)
     }
 }
 

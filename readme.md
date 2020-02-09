@@ -678,3 +678,34 @@ CoursesPage.propTypes = {
 ```
 
 Since we declared the mapDispatchToProps, dispatch is no longer injected. Only the actions we declared in mapDispatchToProps are passed in.
+
+## mapDispatchToProps: bindActionCreator
+Redux come with saving us from manually mapping the mapDispatchToProps this function is called bindActionCreators
+
+
+- import the library `import { bindActionCreators } from 'redux'`
+- update the mapDispatchToProps since there will more than one action we change the object createCourse to actions
+```js
+function mapDispatchToProps(dispatch){
+    return {
+        // for more actions in the props
+        actions: bindActionCreators(courseActions, dispatch)
+    }
+}
+```
+- update the PropType actions will be object and required
+```js
+CoursesPage.propTypes = {
+    courses: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired
+}
+```
+- update the HandleSubmit
+```js
+handleSubmit = (event) => {
+    // it will stop reload the App
+    event.preventDefault();
+    this.props.actions.createCourse(this.state.course)
+}
+```
+*This will do mapDispatchToProps automatically.*
