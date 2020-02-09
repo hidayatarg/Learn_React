@@ -641,7 +641,7 @@ Check Redux DevTools for Update
 
 # Remember Redux Flow
 ![](https://avatars3.githubusercontent.com/u/31112269?v=4&s=100)
-![](/Redux-Flow.png?s=200)
+![](/pngs/Redux-Flow.png)
 
 
 
